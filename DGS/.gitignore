@@ -1,0 +1,5 @@
+# DGS project gitignore
+
+# Ignore binaries
+/bin/
+*.jar
