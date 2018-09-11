@@ -1,0 +1,5 @@
+# KM project gitignore
+
+# Ignore binaries
+/bin/
+*.jar
