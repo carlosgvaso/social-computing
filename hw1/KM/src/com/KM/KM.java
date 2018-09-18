@@ -194,7 +194,7 @@ public class KM {
 	 * Print formatted output.
 	 */
 	private void printResults() {
-		System.out.println(this.matching_weight + "\t// weight of the matching");
+		System.out.println(this.matching_weight + " // weight of the matching");
 		
 		for (int i=0; i<this.n; i++) {
 			System.out.println("(" + (i+1) + "," + (ij[i]+1) + ")");
@@ -347,6 +347,8 @@ public class KM {
 	 * @param args
 	 */
 	public static void main (String[] args) {
+		long startTime = System.nanoTime();
+		
 		// Check we have 1 argument
 		if (args.length != 1) {
 			System.out.println("Wrong number of arguments provided. Please, run the program as follows:\n\njava KM <input file name>");
@@ -359,5 +361,9 @@ public class KM {
 		km.augmentMatching();
 		km.findMatchingWeight();
 		km.printResults();
+		
+		long endTime = System.nanoTime();
+		long totalTime = endTime-startTime;
+		System.out.println("Total time taken for KM is " + totalTime);
 	}
 }
