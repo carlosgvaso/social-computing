@@ -3,3 +3,7 @@
 # Ignore binaries
 /bin/
 *.jar
+
+# Ignore inlut file
+input.txt
+
