@@ -2,4 +2,9 @@
 
 # Ignore binaries
 /bin/
+/jar/
 *.jar
+
+# Ignore input file
+input.txt
+
