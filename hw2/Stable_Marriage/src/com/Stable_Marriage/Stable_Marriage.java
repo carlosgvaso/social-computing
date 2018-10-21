@@ -6,13 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class Stable_Marriage {
-	private static int N = 50;			// max number of vertices in one partition, or max number of items and bidders
-	private static double inf = 1000000000;// infinity
-	private static int[][] mChoices;				// weight matrix, where w_ij is weigtht of edge between item i and bidder j
-	private static int[][] fChoices;
+	private int[][] mChoices;				// weight matrix, where w_ij is weigtht of edge between item i and bidder j
+	private int[][] fChoices;
 	private Tuple[] couples;
 	private Proposer[] Paired;
 	
@@ -49,7 +46,9 @@ public class Stable_Marriage {
 	}
 	
 	private class Tuple{
+		@SuppressWarnings("unused")
 		int p1 = -1;
+		@SuppressWarnings("unused")
 		int p2 = -1;
 	}
 	
@@ -83,14 +82,12 @@ public class Stable_Marriage {
 				Options[choice].Free = false;
 				Options[choice].spouse = proposer.index;
 				Paired[proposer.index] = proposer;
-				System.out.println(proposer.index + 1 + " proposed to " + (choice + 1) + " -- FREE - ACCEPTED");
+				//System.out.println(proposer.index + 1 + " proposed to " + (choice + 1) + " -- FREE - ACCEPTED");
 			}
 			else {
 				int rankProposer = -1;
 				int rankCurrent = -1;
-				if (choice == 7) {
-					int t = 1;
-				}
+				
 				Acceptor accept = Options[choice];
 				for (int j = 0; j < this.n; j++) {
 					int nextPref = accept.preferenceArr[j];
@@ -103,7 +100,7 @@ public class Stable_Marriage {
 				if (rankCurrent < rankProposer) {
 					proposer.proposals.add(choice);
 					freeList.add(proposer);
-					System.out.println(proposer.index + 1 + " proposed to " + (choice + 1) + " -- TAKEN BY "+ accept.spouse + " - REJECTED");
+					//System.out.println(proposer.index + 1 + " proposed to " + (choice + 1) + " -- TAKEN BY "+ accept.spouse + " - REJECTED");
 					
 				}
 				else {
@@ -116,7 +113,7 @@ public class Stable_Marriage {
 					
 					Paired[proposer.index] = proposer;
 
-					System.out.println(proposer.index + 1 + " proposed to " + (choice + 1) + " -- TAKEN BY "+ accept.spouse + " - ACCEPTED");
+					//System.out.println(proposer.index + 1 + " proposed to " + (choice + 1) + " -- TAKEN BY "+ accept.spouse + " - ACCEPTED");
 				}
 			}
 		}
@@ -212,8 +209,8 @@ public class Stable_Marriage {
 		long startTime = System.nanoTime();
 		
 		// Check we have 1 argument
-		if (args.length < 1) {
-			System.out.println("Wrong number of arguments provided. Please, run the program as follows:\n\njava KM <input file name>");
+		if (args.length != 2) {
+			System.out.println("Wrong number of arguments provided. Please, run the program as follows:\n\njava -jar SMP.jar <input file name> <m / w>");
 			System.exit(1);
 		}
 			
@@ -221,12 +218,12 @@ public class Stable_Marriage {
 		
 			sm.readInputFile(args[0]);
 			if (args[1].equals("m"))
-				sm.marryPairs(mChoices, fChoices);
+				sm.marryPairs(sm.mChoices, sm.fChoices);
 			else if (args[1].equals("w"))
-				sm.marryPairs(fChoices, mChoices);
+				sm.marryPairs(sm.fChoices, sm.mChoices);
 			sm.printResults();
 			long endTime = System.nanoTime();
 			long totalTime = endTime-startTime;
-			System.out.println("Total time taken for DGS is " + totalTime);
+			System.out.println("Total time taken for SMP is " + totalTime);
 		}
 }

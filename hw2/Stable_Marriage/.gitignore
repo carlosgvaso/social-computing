@@ -5,7 +5,8 @@
 /jar/
 *.jar
 
-# Ignore input file
+# Ignore input files
 input.txt
+*.txt
 
 
