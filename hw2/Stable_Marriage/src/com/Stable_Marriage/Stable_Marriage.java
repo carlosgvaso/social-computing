@@ -207,23 +207,23 @@ public class Stable_Marriage {
 	
 	public static void main(String[] args) {
 		long startTime = System.nanoTime();
-		
+
 		// Check we have 1 argument
 		if (args.length != 2) {
 			System.out.println("Wrong number of arguments provided. Please, run the program as follows:\n\njava -jar SMP.jar <input file name> <m / w>");
 			System.exit(1);
 		}
-			
+
 		Stable_Marriage sm = new Stable_Marriage();
-		
-			sm.readInputFile(args[0]);
-			if (args[1].equals("m"))
-				sm.marryPairs(sm.mChoices, sm.fChoices);
-			else if (args[1].equals("w"))
-				sm.marryPairs(sm.fChoices, sm.mChoices);
-			sm.printResults();
-			long endTime = System.nanoTime();
-			long totalTime = endTime-startTime;
-			System.out.println("Total time taken for SMP is " + totalTime);
-		}
+
+		sm.readInputFile(args[0]);
+		if (args[1].equals("m"))
+			sm.marryPairs(sm.mChoices, sm.fChoices);
+		else if (args[1].equals("w"))
+			sm.marryPairs(sm.fChoices, sm.mChoices);
+		sm.printResults();
+		long endTime = System.nanoTime();
+		long totalTime = endTime-startTime;
+		System.out.println("Total time taken for SMP is " + totalTime);
+	}
 }
